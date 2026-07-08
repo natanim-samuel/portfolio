@@ -1,4 +1,4 @@
-import Portfolio from "./pages/Portfolio";
+import Portfolio from "./pages/portfolio2";
 
 function App() {
   return <Portfolio />;
