@@ -138,12 +138,12 @@ export default function Portfolio() {
               <span className="np-corner" style={{ top: 10, right: 10, borderTop: "1px solid", borderRight: "1px solid" }} />
               <span className="np-corner" style={{ bottom: 10, left: 10, borderBottom: "1px solid", borderLeft: "1px solid" }} />
               <span className="np-corner" style={{ bottom: 10, right: 10, borderBottom: "1px solid", borderRight: "1px solid" }} />
-              <span className="np-monogram"><img src="src\assets\d5.png" alt=" ns " style={{width:"100%",height:"100%",objectFit:"inherit",borderRadius:10}}  /></span>
+              <span className="np-monogram"><img src="src\assets\d7.jpg" alt=" n.s " style={{width:"100%",height:"100%",objectFit:"inherit",borderRadius:10}}  /></span>
         
             </div>
             <div className="np-editor">
               <div className="np-editor-bar">
-                <span className="np-dot" style={{ background: "#e8635f" }} />
+                <span className="np-dot" style={{ backsground: "#e8635f" }} />
                 <span className="np-dot" style={{ background: "#e8b44a" }} />
                 <span className="np-dot" style={{ background: "#5fd08a" }} />
                 <span className="np-editor-filename">portfolio.tsx</span>
