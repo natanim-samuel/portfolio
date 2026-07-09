@@ -1,17 +1,5 @@
 import React, { useRef, useState } from "react";
-
-const C = {
-  bg: "#0a0a0a",
-  panel: "#141414",
-  card: "#161616",
-  border: "#262626",
-  borderLight: "#333333",
-  text: "#f2f2f0",
-  muted: "#a3a3a0",
-  faint: "#6b6b68",
-  chip: "#1c1c1c",
-  sans: "'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif",
-};
+import "./portfolio.css";
 
 const NAV = [
   { id: "home", label: "Home" },
@@ -127,65 +115,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div style={{ background: C.bg, minHeight: "100vh", color: C.text, fontFamily: C.sans }}>
-      <style>{`
-        * { box-sizing: border-box; }
-        ::selection { background: #ffffff; color: #0a0a0a; }
-        a { color: inherit; text-decoration: none; }
-        .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
-        .nav-shell { position: sticky; top: 18px; z-index: 30; display: flex; justify-content: center; padding: 0 16px; }
-        .nav-pill { display:flex; align-items:center; gap:6px; background: rgba(20,20,20,0.85); backdrop-filter: blur(14px); border: 1px solid ${C.border}; border-radius: 999px; padding: 6px; box-shadow: 0 10px 30px -12px rgba(0,0,0,0.6); }
-        .nav-mark { width:34px; height:34px; border-radius:50%; background:#1e1e1e; border:1px solid ${C.borderLight}; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; margin-right:6px; }
-        .nav-link { font-size: 13px; padding: 8px 14px; border-radius: 999px; color: ${C.muted}; cursor:pointer; white-space:nowrap; transition: color .15s, background .15s; background:none; border:none; }
-        .nav-link:hover { color: ${C.text}; }
-        .nav-link.active { color: ${C.text}; background: #232323; }
-        .nav-cta { font-size: 13px; padding: 8px 16px; border-radius: 999px; background:#f2f2f0; color:#0a0a0a; font-weight:600; margin-left: 4px; }
-        .btn { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; padding: 12px 22px; border-radius: 10px; cursor:pointer; border:1px solid transparent; transition: transform .15s, filter .15s, border-color .15s; }
-        .btn:hover { transform: translateY(-1px); }
-        .btn:focus-visible { outline:2px solid #fff; outline-offset:2px; }
-        .btn-primary { background:#f2f2f0; color:#0a0a0a; }
-        .btn-primary:hover { filter: brightness(0.94); }
-        .btn-ghost { background:transparent; color:${C.text}; border-color:${C.borderLight}; }
-        .btn-ghost:hover { border-color:#7a7a78; }
-        .social-row { display:flex; gap:10px; flex-wrap:wrap; }
-        .social-chip { display:flex; align-items:center; gap:7px; font-size:12.5px; color:${C.muted}; padding:8px 13px; border:1px solid ${C.border}; border-radius:999px; transition: border-color .15s, color .15s; }
-        .social-chip:hover { border-color:${C.borderLight}; color:${C.text}; }
-        .eyebrow { font-size:13px; color:${C.muted}; letter-spacing:0.02em; margin-bottom:10px; }
-        .h1 { font-size:44px; line-height:1.08; font-weight:700; letter-spacing:-0.02em; margin:0 0 14px; }
-        .lede { font-size:15.5px; color:${C.muted}; line-height:1.7; max-width: 480px; margin: 0 0 26px; }
-        .avatar-card { border-radius:20px; background: linear-gradient(160deg,#1c1c1c,#0f0f0f); border:1px solid ${C.border}; aspect-ratio: 3/4; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-        .avatar-mono { font-size:64px; font-weight:700; color:#3a3a38; letter-spacing:-2px; }
-        .section { margin-top: 110px; }
-        .section-head { text-align:center; margin-bottom: 44px; }
-        .section-title { font-size:30px; font-weight:700; letter-spacing:-0.01em; margin:0 0 10px; }
-        .section-tagline { font-size:13.5px; color:${C.faint}; }
-        .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-        .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-        .card { background:${C.card}; border:1px solid ${C.border}; border-radius:14px; padding:22px; }
-        .card h3 { font-size:15.5px; margin:0 0 8px; font-weight:700; }
-        .card p { font-size:13.5px; color:${C.muted}; line-height:1.6; margin:0; }
-        .tag { display:inline-block; font-size:11.5px; color:${C.muted}; background:${C.chip}; border:1px solid ${C.border}; padding:5px 11px; border-radius:999px; margin:4px 6px 0 0; }
-        .project-card { background:${C.card}; border:1px solid ${C.border}; border-radius:16px; padding:26px; margin-bottom:14px; }
-        .project-title { font-size:19px; font-weight:700; margin:0 0 4px; }
-        .project-sub { font-size:12.5px; color:${C.faint}; font-weight:600; letter-spacing:0.01em; text-transform:uppercase; margin-bottom:12px; }
-        .project-desc { font-size:14.5px; color:${C.muted}; line-height:1.7; margin-bottom:14px; max-width:640px; }
-        .stat-row { display:flex; justify-content:center; gap:60px; margin-top:34px; flex-wrap:wrap; }
-        .stat-num { font-size:30px; font-weight:700; }
-        .stat-label { font-size:12.5px; color:${C.faint}; margin-top:4px; }
-        .edu-card { display:flex; gap:20px; background:${C.card}; border:1px solid ${C.border}; border-radius:16px; padding:28px; align-items:flex-start; }
-        .edu-badge { width:44px; height:44px; border-radius:12px; background:#1e1e1e; border:1px solid ${C.borderLight}; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px; }
-        .lang-row { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
-        .lang-chip { display:flex; align-items:center; gap:8px; font-size:13.5px; padding:10px 18px; border:1px solid ${C.border}; border-radius:999px; background:${C.card}; }
-        .lang-level { color:${C.faint}; font-size:12px; }
-        .contact-panel { background:${C.card}; border:1px solid ${C.border}; border-radius:18px; padding:36px; text-align:center; }
-        @media (max-width: 820px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
-          .grid-4, .grid-2 { grid-template-columns: 1fr !important; }
-          .h1 { font-size:34px; }
-          .avatar-card { max-width: 260px; margin: 0 auto; }
-          .nav-pill { flex-wrap: wrap; justify-content:center; }
-        }
-      `}</style>
+    <div className="np-root">
 
       <div className="nav-shell">
         <nav className="nav-pill">
@@ -201,14 +131,10 @@ export default function Portfolio() {
         </nav>
       </div>
 
-      <div className="wrap" style={{ paddingTop: 60, paddingBottom: 110 }}>
+      <div className="wrap wrap-page">
         {/* HERO */}
         <section id="home" ref={(el) => (refs.current.home = el)}>
-          <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 40, alignItems: "center" }}>
-             <div className="avatar-card">
-              
-              <img src="src\assets\d7.jpg" style={{width:"100%",height:"100%",objectFit:"contain"}}></img>
-            </div>
+          <div className="hero-grid">
             <div>
               <p className="eyebrow">I am Natanim Samuel Mekonnen</p>
               <h1 className="h1">
@@ -219,7 +145,7 @@ export default function Portfolio() {
                 building web and mobile products — from UI/UX design in Figma to
                 production apps in React, Flutter, and Kotlin.
               </p>
-              <div style={{ display: "flex", gap: 12, marginBottom: 26, flexWrap: "wrap" }}>
+              <div className="hero-actions">
                 <a className="btn btn-primary" href="#projects" onClick={(e) => { e.preventDefault(); scrollTo("projects"); }}>
                   View Projects
                 </a>
@@ -235,7 +161,10 @@ export default function Portfolio() {
                 ))}
               </div>
             </div>
-           
+            <div className="avatar-card">
+              <span className="avatar-mono">NS</span>
+              {/* Swap for <img src="your-photo-url" style={{width:"100%",height:"100%",objectFit:"cover"}} /> once you have one hosted */}
+            </div>
           </div>
         </section>
 
@@ -248,11 +177,11 @@ export default function Portfolio() {
           <div className="edu-card">
             <div className="edu-badge">🎓</div>
             <div>
-              <h3 style={{ margin: "0 0 4px", fontSize: 17, fontWeight: 700 }}>BSc in Software Engineering</h3>
-              <p style={{ margin: "0 0 10px", fontSize: 13.5, color: C.muted }}>
+              <h3 className="edu-degree">BSc in Software Engineering</h3>
+              <p className="edu-university">
                 Addis Ababa University — College of Natural &amp; Computational Sciences
               </p>
-              <div style={{ display: "flex", gap: 18, flexWrap: "wrap", fontSize: 13, color: C.faint }}>
+              <div className="edu-meta">
                 <span>📍 Addis Ababa, Ethiopia</span>
                 <span>3rd Year</span>
                 <span>Expected Graduation 2026</span>
@@ -260,15 +189,15 @@ export default function Portfolio() {
             </div>
           </div>
           <div className="stat-row">
-            <div style={{ textAlign: "center" }}>
+            <div className="stat">
               <div className="stat-num">3rd</div>
               <div className="stat-label">Year of Study</div>
             </div>
-            <div style={{ textAlign: "center" }}>
+            <div className="stat">
               <div className="stat-num">4+</div>
               <div className="stat-label">Projects Completed</div>
             </div>
-            <div style={{ textAlign: "center" }}>
+            <div className="stat">
               <div className="stat-num">2026</div>
               <div className="stat-label">Expected Graduation</div>
             </div>
@@ -313,7 +242,7 @@ export default function Portfolio() {
               </div>
             ))}
           </div>
-          <div className="lang-row" style={{ marginTop: 30 }}>
+          <div className="lang-row lang-row-spaced">
             {LANGUAGES.map((l) => (
               <div className="lang-chip" key={l.lang}>
                 <span>{l.lang}</span>
@@ -330,10 +259,10 @@ export default function Portfolio() {
             <p className="section-tagline">Open to internships, collaborations, and freelance work</p>
           </div>
           <div className="contact-panel">
-            <p style={{ fontSize: 15, color: C.muted, marginBottom: 22, maxWidth: 460, marginLeft: "auto", marginRight: "auto" }}>
+            <p className="contact-lede">
               Reach out by email or phone, or find me on LinkedIn, GitHub, and LeetCode.
             </p>
-            <div className="social-row" style={{ justifyContent: "center" }}>
+            <div className="social-row social-row-center">
               {SOCIALS.map((s) => (
                 <a key={s.label} className="social-chip" href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
                   <s.icon /> {s.label}
@@ -344,7 +273,7 @@ export default function Portfolio() {
         </section>
       </div>
 
-      <footer style={{ textAlign: "center", padding: "10px 0 50px", fontSize: 12.5, color: C.faint }}>
+      <footer className="np-footer">
         © {new Date().getFullYear()} Natanim Samuel Mekonnen
       </footer>
     </div>
